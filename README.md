@@ -4,7 +4,7 @@
 
 How do you initialize a `System.Action`? If you do this:
 
-```
+```csharp
 Action OnEvent = null;
 ```
 
@@ -12,13 +12,13 @@ You will have to null-check this delegate on every invocation.
 
 To avoid null-checks, you can initialize it to a lambda that does nothing (in other word, a "No-Op"):
 
-```
+```csharp
 Action OnEvent = delegate { };
 ```
 
 But everytime you write an anonymous method, there is an allocation. So this will allocate 4 different runtime methods, all doing nothing:
 
-```
+```csharp
 Action OnEvent1 = delegate { };
 Action OnEvent2 = delegate { };
 Action OnEvent3 = delegate { };
@@ -31,7 +31,7 @@ Action OnEvent4 = delegate { };
 
 **Example**:
 
-```
+```csharp
 using CLSS;
 
 Action OnEvent1 = NoOp.Method;
@@ -42,7 +42,7 @@ Action OnEvent4 = NoOp.Method;
 
 Multi-argument No-Op:
 
-```
+```csharp
 using CLSS;
 
 Action<float, int> OnEvent = NoOp.Method<float, int>;
